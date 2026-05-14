@@ -21,7 +21,10 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        //
+        $categories = ['Analgesics', 'Antibiotics', 'Cardiovascular Drugs', 'Antidepressants', 'Gastrointestinal Agents'];
+        $condition =     ['Available', 'Out of Stock'];
+
+        return view('medicines.create', compact('categories', 'condition'));
     }
 
     /**
@@ -29,7 +32,20 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'medicine_name' => 'required',
+            'generic_name' => 'required',
+            'category' => 'required',
+            'quantity' => 'required',
+            'expiration_date' => 'required',
+            'price' => 'required',
+            'status' => 'required',
+        ]);
+
+        Medicine::create($request->all());
+
+        return redirect()->route('medicines.index')->with('success', 'A medicine added successfully');
     }
 
     /**
@@ -37,7 +53,7 @@ class MedicineController extends Controller
      */
     public function show(Medicine $medicine)
     {
-        //
+        return redirect()->route('medicines.show', compact('medicine'));
     }
 
     /**
@@ -45,7 +61,10 @@ class MedicineController extends Controller
      */
     public function edit(Medicine $medicine)
     {
-        //
+        $categories = ['Analgesics', 'Antibiotics', 'Cardiovascular Drugs', 'Antidepressants', 'Gastrointestinal Agents'];
+        $status =     ['Available', 'Out of Stock'];
+
+        return view('medicines.edit', compact('medicine', 'categories', 'status'));
     }
 
     /**
@@ -53,7 +72,19 @@ class MedicineController extends Controller
      */
     public function update(Request $request, Medicine $medicine)
     {
-        //
+        $request->validate([
+            'medicine_name' => 'required',
+            'generic_name' => 'required',
+            'category' => 'required',
+            'quantity' => 'required',
+            'expiration_date' => 'required',
+            'price' => 'required',
+            'status' => 'required',
+        ]);
+
+        $medicine->update($request->all());
+
+        return redirect()->route('medicines.index')->with('update', 'A medicine updated susccefully');
     }
 
     /**
@@ -61,6 +92,8 @@ class MedicineController extends Controller
      */
     public function destroy(Medicine $medicine)
     {
-        //
+        $medicine->delete();
+
+        return redirect()->route('medicines.index')->with('delete', 'A medicine deleted susccefully');
     }
 }
