@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ProfileController;
-use App\Models\User;
+use App\Models\Medicine;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('medicines', MedicineController::class);
 
     Route::get('/export-excel', function () {
-        $users = User::all();
-        return (new FastExcel($users))->download('user.xlsx');
+        $medicine = Medicine::all();
+        return (new FastExcel($medicine))->download('Report Medicines.xlsx');
     });
 });
 

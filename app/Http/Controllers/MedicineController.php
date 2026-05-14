@@ -62,9 +62,9 @@ class MedicineController extends Controller
     public function edit(Medicine $medicine)
     {
         $categories = ['Analgesics', 'Antibiotics', 'Cardiovascular Drugs', 'Antidepressants', 'Gastrointestinal Agents'];
-        $status =     ['Available', 'Out of Stock'];
+        $condition =     ['Available', 'Out of Stock'];
 
-        return view('medicines.edit', compact('medicine', 'categories', 'status'));
+        return view('medicines.edit', compact('medicine', 'categories', 'condition'));
     }
 
     /**

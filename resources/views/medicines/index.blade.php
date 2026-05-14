@@ -64,9 +64,9 @@
                     </div>
                 </div>
             <div class="m-4 py-6">
-                    <button class="border border-green-400 p-2 rounded-md bg-green-500 text-white shadow-lg"> 
-                        Export to Excel 
-                        </button>
+                    <a href="/export-excel" class="border border-green-400 p-2 rounded-md bg-green-500 text-white shadow-lg">
+                        Export to Excel
+                    </a>
             </div>
         </div>
     </div>
